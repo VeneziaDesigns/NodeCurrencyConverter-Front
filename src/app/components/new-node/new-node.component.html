@@ -1,0 +1,82 @@
+<form [formGroup]="newNodeForm" (ngSubmit)="onSubmit()">
+  <mat-card class="new-node-card">
+    <mat-card-content>
+      <!-- Nueva divisa -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nueva divisa</mat-label>
+        <input
+          matInput
+          formControlName="newCurrency"
+          placeholder="Código de divisa (ej. USD)"
+          maxlength="3"
+        />
+        <mat-error *ngIf="newNodeForm.get('newCurrency')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Conexiones dinámicas -->
+      <div formArrayName="connections" *ngIf="connections && connections.length > 0">
+        <div
+          class="connexion-and-value-fields"
+          *ngFor="let connection of connections.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Divisa de conexión</mat-label>
+            <input
+              matInput
+              formControlName="to"
+              placeholder="Código de divisa (e.g. EUR)"
+              maxlength="3"
+            />
+            <mat-error *ngIf="connection.get('to')?.hasError('required')">
+              Campo obligatorio
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Valor</mat-label>
+            <input
+              matInput
+              formControlName="value"
+              placeholder="Valor (ej. 0.01 - ...)"
+              (input)="onValueInput($event)"
+            />
+            <mat-error *ngIf="connection.get('value')?.hasError('required')">
+              Campo obligatorio
+            </mat-error>
+            <mat-error *ngIf="connection.get('value')?.hasError('pattern')">
+              Debe ser un número válido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Selector de número de conexiones -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Número de conexiones</mat-label>
+        <mat-select formControlName="connectionsCount">
+          <mat-option *ngFor="let count of [1, 2, 3]" [value]="count">
+            {{ count }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="newNodeForm.get('connectionsCount')?.hasError('required')">
+          Selecciona un número
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        class="custom-btn"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="newNodeForm.invalid"
+      >
+        Crear nodo
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

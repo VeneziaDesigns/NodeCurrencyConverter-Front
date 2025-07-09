@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  background-color: #004F4F;
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem;
+  align-items: flex-start; 
+}
+
+.dashboard > * {
+  flex: 1 1 300px; 
+  min-width: 300px; 
+}
+
+.dashboard mat-card {
+  display: flex;
+  flex-direction: column;
+  height: auto; 
+  margin: 8px;
+  color: #e3f2fd;
+}
+
+mat-card-title {
+  text-align: center;
+  margin: 1rem !important;
+  display: block;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.selected,
+.selected .mdc-list-item__primary-text {
+  background: #e3f2fd !important;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+.path-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 1rem 1rem 1rem;
+  padding: 0 1rem 0 1rem;
+}
+
+.error {
+  color: #e3f2fd;
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+mat-list {
+  height: auto;
+}
+
+.table-container {
+  max-height: 30rem;
+  overflow: auto;
+}
+
+table.mat-table {
+  width: 100%;         
+  background: transparent; 
+}
+
+.result h4 {
+  margin: 1rem 1rem 0 1rem;
+}
+
+.custom-btn {
+  background-color: #e3f2fd !important;
+  color: #004F4F !important;
+}
+.custom-btn:hover {
+  background-color: #d8d8d8 !important;
+}
+
+a.active-link {
+  background-color: #e3f2fd !important;
+  color: #004F4F !important;
+  font-weight: bold;
+}
+
+a.active-link:hover {
+  background-color: #d8d8d8 !important;
+}
+

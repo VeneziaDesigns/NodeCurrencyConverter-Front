@@ -1,0 +1,36 @@
+.new-node-card {
+  margin: 2rem auto;           // centrado horizontal
+  padding: 1rem;
+  max-width: 600px;            // ancho máximo para pantallas grandes
+  min-width: 320px;            // mínimo para que no se deforme
+  width: 100%;                 // responsive
+  box-sizing: border-box;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.connexion-and-value-fields {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  mat-form-field {
+    flex: 1;
+
+    &:first-child {
+      flex: 2; // Divisa de conexión (2/3)
+    }
+
+    &:last-child {
+      flex: 1; // Valor (1/3)
+    }
+  }
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;   // centrado horizontal del botón
+  padding-top: 1rem;
+}

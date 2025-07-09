@@ -1,0 +1,10 @@
+<mat-list>
+  <mat-list-item
+    *ngFor="let currency of currencies"
+    (click)="selectCurrency(currency.code)"
+    [class.selected]="selectedCurrency === currency.code"
+  >
+    {{ currency.code }}
+  </mat-list-item>
+</mat-list>
+

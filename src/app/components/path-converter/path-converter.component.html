@@ -1,0 +1,47 @@
+<form class="path-form" (ngSubmit)="convert()" #form="ngForm">
+  <mat-form-field>
+    <mat-label>Origen</mat-label>
+    <input
+      class="path-input"
+      matInput
+      [(ngModel)]="request.from"
+      name="from"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Destino</mat-label>
+    <input
+      class="path-input"
+      matInput
+      [(ngModel)]="request.to"
+      name="to"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Valor</mat-label>
+    <input
+      class="path-input"
+      matInput
+      type="number"
+      [(ngModel)]="request.value"
+      name="value"
+      required
+    />
+  </mat-form-field>
+  <button mat-raised-button class="custom-btn" type="submit">
+    Calcular Ruta
+  </button>
+</form>
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+<div *ngIf="result" class="result">
+  <h4>Resultado:</h4>
+  <mat-list class="result-list">
+    <mat-list-item *ngFor="let step of result">
+      {{ step.from }} → {{ step.to }} = {{ step.value | number : "1.2-2" }}
+    </mat-list-item>
+  </mat-list>
+</div>

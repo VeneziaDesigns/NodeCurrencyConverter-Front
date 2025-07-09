@@ -1,0 +1,8 @@
+<mat-card>
+  <mat-card-title>Nodos vecinos de {{ currencyCode }}</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let neighbor of neighbors">
+      {{ neighbor.code }}
+    </mat-list-item>
+  </mat-list>
+</mat-card>

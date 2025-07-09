@@ -1,0 +1,17 @@
+<div class="dashboard">
+  <mat-card>
+    <mat-card-title>Conversión óptima de divisas</mat-card-title>
+    <app-path-converter></app-path-converter>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Divisas Disponibles</mat-card-title>
+    <app-currency-list (currencySelected)="onCurrencySelected($event)">
+    </app-currency-list>
+  </mat-card>
+  <app-neighbor-nodes
+    *ngIf="selectedCurrency"
+    [currencyCode]="selectedCurrency!"
+  >
+  </app-neighbor-nodes>
+  <app-exchange-list></app-exchange-list>
+</div>
