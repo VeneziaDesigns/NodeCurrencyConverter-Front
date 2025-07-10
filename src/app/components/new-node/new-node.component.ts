@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, AfterViewInit, ChangeDetectorRef, NgZone, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -9,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { CurrencyExchangeDto } from '../../models/currency-exchange.dto';
 import { CurrencyService } from '../../services/currency.service';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-new-node',
@@ -33,9 +35,11 @@ export class NewNodeComponent implements OnInit, AfterViewInit {
 
   constructor(
     private currencyService: CurrencyService,
+    private router: Router,
     private fb: FormBuilder,
     private cdRef: ChangeDetectorRef,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -110,13 +114,17 @@ export class NewNodeComponent implements OnInit, AfterViewInit {
   onSubmit() {
     if (this.newNodeForm.valid) {
       const currencyExchange: CurrencyExchangeDto[] = this.mapFormToDto();
-      
+
       this.currencyService.createNewConnectionNode(currencyExchange).subscribe({
         next: () => {
-          console.log('Nodos creados correctamente');
+          console.log('Conexiones entre divisas creadas correctamente');
+          this.messageService.message = 'Conexiones entre divisas creadas con éxito.';
+          this.router.navigate(['/dashboard']);
         },
         error: (e) => {
-          console.error('Error al crear el nuevo nodo:', e);
+          console.error('Ocurrió un error al crear el nuevo nodo:', e);
+          this.messageService.message = 'Ocurrió un error al intentar crear las conexiones entre divisas.';
+          this.router.navigate(['/dashboard']);
         }
       });
     }
