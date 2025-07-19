@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
-import { environment } from '../../environments/environments.prod';
+import { environment } from '../../environments/environment';
 import { CurrencyDto,  } from '../models/currency.dto';
 import { CurrencyExchangeDto } from '../models/currency-exchange.dto';
 
